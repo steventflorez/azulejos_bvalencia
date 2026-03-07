@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@theme {
+  --color-moss: #2E4036;
+  --color-moss-light: #3a5245;
+  --color-clay: #CC5833;
+  --color-clay-dark: #a84828;
+  --color-cream: #F2F0E9;
+  --color-charcoal: #1A1A1A;
+  --color-charcoal-light: #2a2a2a;
+
+  --font-sans: 'Plus Jakarta Sans', 'Outfit', system-ui, sans-serif;
+  --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --radius-card: 2rem;
+  --radius-pill: 100px;
+  --radius-button: 1rem;
+}
+
+/* ── Base resets ─────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  overflow-x: hidden;
+}
+
+/* ── Noise overlay ───────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ── Typography utils ────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+.font-serif { font-family: var(--font-serif); }
+.font-mono { font-family: var(--font-mono); }
+.tracking-tight { letter-spacing: -0.03em; }
+.tracking-tighter { letter-spacing: -0.05em; }
+
+/* ── Magnetic button ─────────────────────────────────── */
+.btn-magnetic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2.25rem;
+  border-radius: var(--radius-button);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+  z-index: 1;
+}
+
+.btn-magnetic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: translateY(101%);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-magnetic:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.btn-magnetic:hover::before {
+  transform: translateY(0);
+}
+
+.btn-magnetic:active {
+  transform: scale(0.97);
+}
+
+.btn-clay {
+  background-color: var(--color-clay);
+  color: #fff;
+}
+.btn-clay::before { background-color: var(--color-clay-dark); }
+
+.btn-moss {
+  background-color: var(--color-moss);
+  color: #fff;
+}
+.btn-moss::before { background-color: var(--color-moss-light); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-charcoal);
+  border: 1.5px solid rgba(0,0,0,0.15);
+}
+.btn-outline::before { background-color: var(--color-cream); }
+.btn-outline:hover { border-color: rgba(0,0,0,0.3); }
+
+/* ── Scrollbar styling ───────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-moss); border-radius: 3px; }
+
+/* ── Selection ───────────────────────────────────────── */
+::selection {
+  background-color: var(--color-moss);
+  color: #fff;
+}
