@@ -71,12 +71,12 @@ export default function Hero() {
                     <span
                         className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-medium tracking-wide"
                         style={{
-                            background: 'rgba(204,88,51,0.15)',
-                            color: '#CC5833',
-                            border: '1px solid rgba(204,88,51,0.25)',
+                            background: 'rgba(220,38,38,0.15)',
+                            color: 'var(--color-clay)',
+                            border: '1px solid rgba(220,38,38,0.25)',
                         }}
                     >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#CC5833] animate-pulse" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse" />
                         Porcelanatos y azulejos · Colección 2026
                     </span>
                 </div>
@@ -99,7 +99,7 @@ export default function Hero() {
 
                 {/* Subtitle */}
                 <p ref={subtitleRef} className="text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>
-                    Venta de porcelanatos y azulejos artesanales que transforman espacios ordinarios en experiencias extraordinarias. Más de 20 años vistiendo hogares en Valencia.
+                    Venta de porcelanatos y azulejos artesanales que transforman espacios ordinarios en experiencias extraordinarias.
                 </p>
 
                 {/* CTA row */}

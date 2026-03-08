@@ -52,7 +52,7 @@ export default function Contact() {
                 <div className="grid md:grid-cols-2 gap-8 items-stretch w-full">
 
                     {/* Map */}
-                    <div className="contact-item overflow-hidden rounded-3xl" style={{ border: '1px solid rgba(0,0,0,0.06)', minHeight: '500px', marginTop: '1rem' }}>
+                    <div className="contact-item overflow-hidden rounded-3xl" style={{ border: '1px solid rgba(0,0,0,0.06)', minHeight: '500px' }}>
                         <iframe
                             title="Ubicación Azulejos Valencia"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.0!2d-0.3763!3d39.4600!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCalle+Cura+Palanca+1%2C+46013+Valencia!5e0!3m2!1ses!2ses!4v1700000000000"
@@ -90,6 +90,30 @@ export default function Contact() {
                                 >
                                     Cómo llegar <ArrowUpRight size={14} />
                                 </a>
+                            </div>
+                        </div>
+
+                        {/* Opening hours */}
+                        <div
+                            className="contact-item rounded-3xl p-6 lg:p-8 flex items-start gap-4 transition-transform duration-300 hover:-translate-y-0.5 flex-1"
+                            style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 20px rgba(0,0,0,0.04)', padding: '1rem' }}
+                        >
+                            <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'var(--color-moss)', color: '#fff' }}>
+                                <Clock size={20} />
+                            </div>
+                            <div>
+                                <h4 className="font-display font-bold text-base mb-1" style={{ color: 'var(--color-charcoal)' }}>Horarios</h4>
+                                <p className="text-sm leading-relaxed" style={{ color: 'rgba(26,26,26,0.55)' }}>
+                                    De lunes a jueves:
+                                    <br />
+                                    10:00 am - 4:00 pm y 5:00 pm - 7:00 pm
+                                    <br />
+                                    Viernes:
+                                    <br />
+                                    10:00 am - 3:00 pm
+                                    <br />
+                                    Sábados y domingos: Cerrado
+                                </p>
                             </div>
                         </div>
 

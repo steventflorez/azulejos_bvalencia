@@ -196,7 +196,7 @@ export default function Archive() {
                                     <h3 className="font-display font-extrabold text-3xl md:text-5xl tracking-tighter text-white mb-2">
                                         {card.title}
                                     </h3>
-                                    <p className="font-serif italic text-lg mb-4" style={{ color: 'var(--color-clay)' }}>
+                                    <p className="font-display italic text-lg mb-4" style={{ color: 'var(--color-clay)' }}>
                                         {card.subtitle}
                                     </p>
                                     <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>
