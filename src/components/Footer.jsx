@@ -34,9 +34,9 @@ export default function Footer() {
                             <Phone size={14} style={{ color: 'var(--color-clay)' }} />
                             +34 692 580 681
                         </a>
-                        <a href="mailto:genesis2777@hotmail.com" className="flex items-center gap-2 text-sm transition-opacity hover:opacity-80" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                        <a href="mailto:genesis2777@gmail.com" className="flex items-center gap-2 text-sm transition-opacity hover:opacity-80" style={{ color: 'rgba(255,255,255,0.6)' }}>
                             <Mail size={14} style={{ color: 'var(--color-clay)' }} />
-                            genesis2777@hotmail.com
+                            genesis2777@gmail.com
                         </a>
                         <span className="flex items-center gap-2 text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
                             <MapPin size={14} style={{ color: 'var(--color-clay)' }} />

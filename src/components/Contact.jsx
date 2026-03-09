@@ -146,7 +146,7 @@ export default function Contact() {
                             </div>
                             <div>
                                 <h4 className="font-display font-bold text-base mb-1" style={{ color: 'var(--color-charcoal)' }}>Correo electrónico</h4>
-                                <p className="text-sm" style={{ color: 'rgba(26,26,26,0.55)' }}>genesis2777@hotmail.com</p>
+                                <p className="text-sm" style={{ color: 'rgba(26,26,26,0.55)' }}>genesis2777@gmail.com</p>
                                 <span className="text-sm font-medium mt-1 block" style={{ color: 'var(--color-clay)' }}>
                                     Escríbenos →
                                 </span>
