@@ -106,13 +106,17 @@ export default function Contact() {
                                 <p className="text-sm leading-relaxed" style={{ color: 'rgba(26,26,26,0.55)' }}>
                                     De lunes a jueves:
                                     <br />
-                                    10:00 am - 4:00 pm y 5:00 pm - 7:00 pm
+                                    10:00 am - 7:30 pm
                                     <br />
                                     Viernes:
                                     <br />
                                     10:00 am - 3:00 pm
                                     <br />
-                                    Sábados y domingos: Cerrado
+                                    Sábados: 
+                                    <br />
+                                    10:00 am - 1:00 pm
+                                    <br />
+                                    domingos: Cerrado
                                 </p>
                             </div>
                         </div>
