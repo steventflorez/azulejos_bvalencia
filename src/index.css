@@ -1,26 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-moss: #2E4036;
-  --color-moss-light: #3a5245;
-  --color-clay: #DC2626;
-  --color-clay-dark: #B91C1C;
-  --color-cream: #F2F0E9;
-  --color-charcoal: #1A1A1A;
-  --color-charcoal-light: #2a2a2a;
+  --color-bg-primary: #FAFAFA;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-alt: #F0F4F8;
+  --color-brand-blue: #0071BC;
+  --color-brand-blue-light: #3392CD;
+  --color-brand-blue-dark: #00568F;
+  --color-brand-green: #26C281;
+  --color-brand-green-light: #4DCE9A;
+  --color-text-main: #1F2937;
+  --color-text-muted: #4B5563;
+  --color-text-light: #9CA3AF;
+  --color-border: #E5E7EB;
 
-  --font-sans: 'Plus Jakarta Sans', 'Outfit', system-ui, sans-serif;
-  --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  --radius-card: 2rem;
+  --radius-card: 1.5rem;
   --radius-pill: 100px;
-  --radius-button: 1rem;
+  --radius-button: 0.75rem;
 }
 
 /* ── Base resets ─────────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -34,37 +40,55 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-cream);
-  color: var(--color-charcoal);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-main);
   overflow-x: hidden;
 }
 
-/* ── Noise overlay ───────────────────────────────────── */
+/* ── Subtle grain overlay (optional, very light) ─────── */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.015;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
 }
 
-/* ── Typography utils ────────────────────────────────── */
-.font-display { font-family: var(--font-display); }
-.font-serif { font-family: var(--font-serif); }
-.font-mono { font-family: var(--font-mono); }
-.tracking-tight { letter-spacing: -0.03em; }
-.tracking-tighter { letter-spacing: -0.05em; }
+/* ── Typography ──────────────────────────────────────── */
+.font-display {
+  font-family: var(--font-display);
+}
 
-/* ── Magnetic button ─────────────────────────────────── */
-.btn-magnetic {
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.tracking-tight {
+  letter-spacing: -0.02em;
+}
+
+.tracking-tighter {
+  letter-spacing: -0.04em;
+}
+
+/* ── Brand accent line decoration ────────────────────── */
+.brand-line {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-brand-blue), var(--color-brand-green));
+  border-radius: 3px;
+}
+
+/* ── Premium button ──────────────────────────────────── */
+.btn-premium {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   padding: 1rem 2.25rem;
   border-radius: var(--radius-button);
   font-family: var(--font-sans);
@@ -73,59 +97,136 @@ body::before {
   cursor: pointer;
   border: none;
   overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
-  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  text-decoration: none;
+  letter-spacing: 0.02em;
 }
 
-.btn-magnetic::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  transform: translateY(101%);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+.btn-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 113, 188, 0.2);
 }
 
-.btn-magnetic:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+.btn-premium:active {
+  transform: translateY(0) scale(0.98);
 }
 
-.btn-magnetic:hover::before {
-  transform: translateY(0);
+.btn-brand {
+  background: linear-gradient(135deg, var(--color-brand-blue), var(--color-brand-blue-light));
+  color: #FFFFFF;
 }
 
-.btn-magnetic:active {
-  transform: scale(0.97);
+.btn-brand:hover {
+  background: linear-gradient(135deg, var(--color-brand-blue-light), var(--color-brand-blue));
 }
 
-.btn-clay {
-  background-color: var(--color-clay);
-  color: #fff;
-}
-.btn-clay::before { background-color: var(--color-clay-dark); }
-
-.btn-moss {
-  background-color: var(--color-moss);
-  color: #fff;
-}
-.btn-moss::before { background-color: var(--color-moss-light); }
-
-.btn-outline {
+.btn-ghost {
   background: transparent;
-  color: var(--color-charcoal);
-  border: 1.5px solid rgba(0,0,0,0.15);
+  color: var(--color-brand-blue);
+  border: 1.5px solid var(--color-brand-blue);
 }
-.btn-outline::before { background-color: var(--color-cream); }
-.btn-outline:hover { border-color: rgba(0,0,0,0.3); }
+
+.btn-ghost:hover {
+  background: rgba(0, 113, 188, 0.05);
+  box-shadow: 0 8px 25px rgba(0, 113, 188, 0.1);
+}
+
+/* ── Card glass effect (Light Theme) ─────────────────── */
+.card-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.card-glass:hover {
+  border-color: rgba(38, 194, 129, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Section tag (uppercase mono label) ──────────────── */
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-brand-blue);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.section-tag::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-brand-green);
+}
+
+.section-tag::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-brand-green);
+}
+
+/* ── Image hover zoom ────────────────────────────────── */
+.img-zoom {
+  overflow: hidden;
+  border-radius: var(--radius-card);
+}
+
+.img-zoom img {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.img-zoom:hover img {
+  transform: scale(1.08);
+}
+
+/* ── Counter animation ───────────────────────────────── */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* ── Scrollbar styling ───────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--color-cream); }
-::-webkit-scrollbar-thumb { background: var(--color-moss); border-radius: 3px; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-blue-light);
+  border-radius: 3px;
+}
 
 /* ── Selection ───────────────────────────────────────── */
 ::selection {
-  background-color: var(--color-moss);
-  color: #fff;
+  background-color: var(--color-brand-green);
+  color: #FFFFFF;
+}
+
+/* ── Smooth reveal ───────────────────────────────────── */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
 }

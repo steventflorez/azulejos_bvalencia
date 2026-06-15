@@ -30,38 +30,52 @@ export default function Contact() {
         <section
             ref={sectionRef}
             id="contact"
-            className="py-24 md:py-36"
-            style={{ background: 'var(--color-cream)', paddingInline: '1rem', marginBottom: '6rem', marginTop: '3rem' }}
+            className="py-24 md:py-36 px-6 md:px-12 lg:px-24"
+            style={{ background: 'var(--color-bg-surface)', padding: '6px' }}
         >
-            <div className="max-w-[1400px] mx-auto">
+            <div className="max-w-[1200px] mx-auto">
                 {/* Header */}
-                <div className="text-center mb-16" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-                    <span className="font-mono text-m tracking-widest uppercase mb-4 mt-4 block" style={{ color: 'var(--color-clay)' }}>
+                <div className="text-center mb-16">
+                    <div className="section-tag justify-center mb-6">
                         Contacto
-                    </span>
-                    <h2 className="font-display font-extrabold text-3xl md:text-5xl tracking-tighter mb-5" style={{ color: 'var(--color-charcoal)' }}>
+                    </div>
+                    <h2
+                        className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6"
+                        style={{ color: 'var(--color-text-main)' }}
+                    >
                         Visítanos o{' '}
-                        <span className="font-serif italic font-normal" style={{ color: 'var(--color-moss)' }}>contáctanos</span>
+                        <span className="italic" style={{ color: 'var(--color-brand-blue)' }}>
+                            contáctanos
+                        </span>
                     </h2>
-                    <p className="text-base md:text-lg leading-relaxed max-w-lg mx-auto" style={{ color: 'rgba(26,26,26,0.55)' }}>
-                        Estamos aquí para ayudarte a encontrar los porcelanatos y azulejos perfectos para tu proyecto.
+                    <p
+                        className="text-base md:text-lg max-w-lg mx-auto leading-relaxed"
+                        style={{ color: 'var(--color-text-muted)' }}
+                    >
+                        Estamos listos para ayudarte a crear el espacio de tus sueños. Ven a conocer nuestro showroom o llámanos para una asesoría personalizada.
                     </p>
                 </div>
 
                 {/* Content grid */}
-                <div className="grid md:grid-cols-2 gap-8 items-stretch w-full">
+                <div className="grid md:grid-cols-2 gap-8 items-stretch">
 
                     {/* Map */}
-                    <div className="contact-item overflow-hidden rounded-3xl" style={{ border: '1px solid rgba(0,0,0,0.06)', minHeight: '500px' }}>
+                    <div
+                        className="contact-item overflow-hidden rounded-3xl shadow-md"
+                        style={{
+                            border: '1px solid var(--color-border)',
+                        }}
+                    >
                         <iframe
                             title="Ubicación Azulejos Valencia"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.0!2d-0.3763!3d39.4600!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCalle+Cura+Palanca+1%2C+46013+Valencia!5e0!3m2!1ses!2ses!4v1700000000000"
                             width="100%"
                             height="100%"
-                            style={{ border: 0, minHeight: '500px' }}
+                            style={{ border: 0, minHeight: '350px' }}
                             allowFullScreen=""
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
+                            className="md:!min-h-[500px]"
                         />
                     </div>
 
@@ -69,15 +83,26 @@ export default function Contact() {
                     <div className="flex flex-col gap-4">
                         {/* Address */}
                         <div
-                            className="contact-item rounded-3xl p-6 lg:p-8 flex items-start gap-4 transition-transform duration-300 hover:-translate-y-0.5 flex-1"
-                            style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 20px rgba(0,0,0,0.04)', padding: '1rem' }}
+                            className="contact-item bg-white p-6 lg:p-8 flex items-start gap-5 flex-1 rounded-3xl shadow-sm hover:shadow-md transition-shadow"
+                            style={{ border: '1px solid var(--color-border)', padding: '12px' }}
                         >
-                            <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'var(--color-moss)', color: '#fff' }}>
-                                <MapPin size={20} />
+                            <div
+                                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                                style={{
+                                    background: 'rgba(38,194,129,0.1)',
+                                    color: 'var(--color-brand-green)',
+                                }}
+                            >
+                                <MapPin size={22} />
                             </div>
                             <div>
-                                <h4 className="font-display font-bold text-base mb-1" style={{ color: 'var(--color-charcoal)' }}>Dirección</h4>
-                                <p className="text-sm leading-relaxed" style={{ color: 'rgba(26,26,26,0.55)' }}>
+                                <h4
+                                    className="font-display font-bold text-lg mb-1"
+                                    style={{ color: 'var(--color-text-main)' }}
+                                >
+                                    Dirección
+                                </h4>
+                                <p className="text-sm leading-relaxed font-medium" style={{ color: 'var(--color-text-muted)' }}>
                                     Calle Cura Palanca 1, bajo 1<br />
                                     46013 Valencia, España
                                 </p>
@@ -85,8 +110,8 @@ export default function Contact() {
                                     href="https://www.google.com/maps/search/Calle+Cura+Palanca+1+46013+Valencia"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 text-sm font-medium mt-2 transition-opacity hover:opacity-70"
-                                    style={{ color: 'var(--color-clay)' }}
+                                    className="inline-flex items-center gap-1 text-sm font-bold mt-3 transition-opacity hover:opacity-70"
+                                    style={{ color: 'var(--color-brand-blue)', textDecoration: 'none' }}
                                 >
                                     Cómo llegar <ArrowUpRight size={14} />
                                 </a>
@@ -95,73 +120,115 @@ export default function Contact() {
 
                         {/* Opening hours */}
                         <div
-                            className="contact-item rounded-3xl p-6 lg:p-8 flex items-start gap-4 transition-transform duration-300 hover:-translate-y-0.5 flex-1"
-                            style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 20px rgba(0,0,0,0.04)', padding: '1rem' }}
+                            className="contact-item bg-white p-6 lg:p-8 flex items-start gap-5 flex-1 rounded-3xl shadow-sm hover:shadow-md transition-shadow"
+                            style={{ border: '1px solid var(--color-border)', padding: '12px' }}
                         >
-                            <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'var(--color-moss)', color: '#fff' }}>
-                                <Clock size={20} />
+                            <div
+                                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                                style={{
+                                    background: 'rgba(38,194,129,0.1)',
+                                    color: 'var(--color-brand-green)',
+                                }}
+                            >
+                                <Clock size={22} />
                             </div>
-                            <div>
-                                <h4 className="font-display font-bold text-base mb-1" style={{ color: 'var(--color-charcoal)' }}>Horarios</h4>
-                                <p className="text-sm leading-relaxed" style={{ color: 'rgba(26,26,26,0.55)' }}>
-                                    De lunes a jueves:
-                                    <br />
-                                    10:00 am - 7:30 pm
-                                    <br />
-                                    Viernes:
-                                    <br />
-                                    10:00 am - 3:00 pm
-                                    <br />
-                                    Sábados: 
-                                    <br />
-                                    10:00 am - 1:00 pm
-                                    <br />
-                                    domingos: Cerrado
-                                </p>
+                            <div className="flex-1">
+                                <h4
+                                    className="font-display font-bold text-lg mb-3"
+                                    style={{ color: 'var(--color-text-main)' }}
+                                >
+                                    Horarios
+                                </h4>
+                                <div className="flex flex-col gap-2">
+                                    <div className="flex justify-between gap-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                                        <span className="font-semibold">Lunes — Jueves</span>
+                                        <span className="font-bold text-gray-800">10:00 — 19:30</span>
+                                    </div>
+                                    <div className="flex justify-between gap-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                                        <span className="font-semibold">Viernes</span>
+                                        <span className="font-bold text-gray-800">10:00 — 15:00</span>
+                                    </div>
+                                    <div className="flex justify-between gap-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                                        <span className="font-semibold">Sábado</span>
+                                        <span className="font-bold text-gray-800">10:00 — 13:00</span>
+                                    </div>
+                                    <div className="flex justify-between gap-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                                        <span className="font-semibold">Domingo</span>
+                                        <span className="font-bold" style={{ color: 'var(--color-text-light)' }}>Cerrado</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         {/* Phone */}
                         <a
                             href="tel:+34692580681"
-                            className="contact-item rounded-3xl p-6 lg:p-8 flex items-start gap-4 transition-transform duration-300 hover:-translate-y-0.5 flex-1"
-                            style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 20px rgba(0,0,0,0.04)', textDecoration: 'none', padding: '1rem' }}
+                            className="contact-item bg-white p-6 lg:p-8 flex items-start gap-5 flex-1 rounded-3xl shadow-sm hover:shadow-lg transition-shadow group"
+                            style={{ border: '1px solid var(--color-border)', textDecoration: 'none', padding: '12px' }}
                         >
-                            <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'var(--color-clay)', color: '#fff' }}>
+                            <div
+                                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110 shadow-sm"
+                                style={{
+                                    background: 'var(--color-brand-blue)',
+                                    color: '#FFFFFF',
+                                }}
+                            >
                                 <Phone size={20} />
                             </div>
                             <div>
-                                <h4 className="font-display font-bold text-base mb-1" style={{ color: 'var(--color-charcoal)' }}>Teléfono</h4>
-                                <p className="text-sm" style={{ color: 'rgba(26,26,26,0.55)' }}>+34 692 580 681</p>
-                                <span className="text-sm font-medium mt-1 block" style={{ color: 'var(--color-clay)' }}>
-                                    Llámanos ahora →
+                                <h4
+                                    className="font-display font-bold text-lg mb-1"
+                                    style={{ color: 'var(--color-text-main)' }}
+                                >
+                                    Teléfono
+                                </h4>
+                                <p className="text-sm font-medium" style={{ color: 'var(--color-text-muted)' }}>
+                                    +34 692 580 681
+                                </p>
+                                <span
+                                    className="text-sm font-bold mt-2 inline-flex items-center gap-1 transition-all duration-300 group-hover:gap-2"
+                                    style={{ color: 'var(--color-brand-blue)' }}
+                                >
+                                    Llámanos ahora <ArrowUpRight size={14} />
                                 </span>
                             </div>
                         </a>
 
                         {/* Email */}
                         <a
-                            href="mailto:genesis2777@hotmail.com"
-                            className="contact-item rounded-3xl p-6 lg:p-8 flex items-start gap-4 transition-transform duration-300 hover:-translate-y-0.5 flex-1"
-                            style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 20px rgba(0,0,0,0.04)', textDecoration: 'none', padding: '1rem' }}
+                            href="mailto:genesis2777@gmail.com"
+                            className="contact-item bg-white p-6 lg:p-8 flex items-start gap-5 flex-1 rounded-3xl shadow-sm hover:shadow-md transition-shadow group"
+                            style={{ border: '1px solid var(--color-border)', textDecoration: 'none', padding: '12px' }}
                         >
-                            <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'var(--color-moss)', color: '#fff' }}>
-                                <Mail size={20} />
+                            <div
+                                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                                style={{
+                                    background: 'rgba(38,194,129,0.1)',
+                                    color: 'var(--color-brand-green)',
+                                }}
+                            >
+                                <Mail size={22} />
                             </div>
                             <div>
-                                <h4 className="font-display font-bold text-base mb-1" style={{ color: 'var(--color-charcoal)' }}>Correo electrónico</h4>
-                                <p className="text-sm" style={{ color: 'rgba(26,26,26,0.55)' }}>genesis2777@gmail.com</p>
-                                <span className="text-sm font-medium mt-1 block" style={{ color: 'var(--color-clay)' }}>
-                                    Escríbenos →
+                                <h4
+                                    className="font-display font-bold text-lg mb-1"
+                                    style={{ color: 'var(--color-text-main)' }}
+                                >
+                                    Correo electrónico
+                                </h4>
+                                <p className="text-sm font-medium" style={{ color: 'var(--color-text-muted)' }}>
+                                    genesis2777@gmail.com
+                                </p>
+                                <span
+                                    className="text-sm font-bold mt-2 inline-flex items-center gap-1 transition-all duration-300 group-hover:gap-2"
+                                    style={{ color: 'var(--color-brand-blue)' }}
+                                >
+                                    Escríbenos <ArrowUpRight size={14} />
                                 </span>
                             </div>
                         </a>
-
-
                     </div>
                 </div>
-
-
             </div>
         </section>
     )

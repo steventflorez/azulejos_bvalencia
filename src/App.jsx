@@ -4,10 +4,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Features from './components/Features'
-import Manifesto from './components/Manifesto'
-import Archive from './components/Archive'
-import Pricing from './components/Pricing'
+import Spaces from './components/Spaces'
+import WhyUs from './components/WhyUs'
+import Gallery from './components/Gallery'
+import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
@@ -33,17 +33,20 @@ export default function App() {
     }, [])
 
     return (
-        <>
+        <div className="min-h-screen bg-[var(--color-bg-primary)]">
             <Navbar />
-            <main>
-                <Hero />
-                <Features />
-                <Manifesto />
-                <Archive />
-                <Contact />
 
-            </main>
-            <Footer />
-        </>
+            {/* Global Wrapper with margins */}
+            <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 bg-[var(--color-bg-surface)] shadow-2xl relative">
+                <main>
+                    <Hero />
+                    <Spaces />
+                    <WhyUs />
+                    <Gallery />
+                    <Contact />
+                </main>
+                <Footer />
+            </div>
+        </div>
     )
 }
