@@ -141,16 +141,8 @@ export default function Contact() {
                                 </h4>
                                 <div className="flex flex-col gap-2">
                                     <div className="flex justify-between gap-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                        <span className="font-semibold">Lunes — Jueves</span>
-                                        <span className="font-bold text-gray-800">10:00 — 19:30</span>
-                                    </div>
-                                    <div className="flex justify-between gap-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                        <span className="font-semibold">Viernes</span>
-                                        <span className="font-bold text-gray-800">10:00 — 15:00</span>
-                                    </div>
-                                    <div className="flex justify-between gap-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                        <span className="font-semibold">Sábado</span>
-                                        <span className="font-bold text-gray-800">10:00 — 13:00</span>
+                                        <span className="font-semibold">Lunes — Sábado</span>
+                                        <span className="font-bold text-gray-800">10:00 — 16:00</span>
                                     </div>
                                     <div className="flex justify-between gap-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>
                                         <span className="font-semibold">Domingo</span>
