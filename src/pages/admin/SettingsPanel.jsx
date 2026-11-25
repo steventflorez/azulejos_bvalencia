@@ -1,12 +1,23 @@
 import { useState, useEffect, useMemo } from 'react'
 import { deleteField } from 'firebase/firestore'
-import { Clock, Phone, Mail, MapPin, Plus, X, Copy } from 'lucide-react'
+import { Clock, Phone, Mail, MapPin, Plus, X, Copy, AlertTriangle } from 'lucide-react'
 import { getSettings, updateSettings } from '../../services/settingsService'
 import { DAYS, MAX_SHIFTS, normalizeSchedule, validateSchedule, todayIndex } from '../../utils/schedule'
 import { Toast, PageHeader, Card, CardTitle, Switch } from './ui'
 
 const timeInput =
     'w-full min-w-0 px-3 py-2.5 rounded-lg text-base sm:text-sm bg-white outline-none border border-[var(--color-border)] focus:border-[var(--color-brand-blue)] focus:ring-2 focus:ring-[rgba(0,113,188,0.12)]'
+
+function describeFirestoreError(e) {
+    const msg = `${e?.code || ''} ${e?.message || ''}`.toLowerCase()
+    if (msg.includes('permission')) {
+        return 'No tienes permiso para leer o guardar en la base de datos. Revisa que hayas iniciado sesión y que las reglas de Firestore estén publicadas.'
+    }
+    if (msg.includes('offline') || msg.includes('unavailable') || msg.includes('not-found') || msg.includes('failed to get document')) {
+        return 'No se pudo conectar con la base de datos (Firestore). Comprueba que la base de datos esté creada en Firebase y tu conexión a internet.'
+    }
+    return `No se pudo conectar con la base de datos: ${e?.message || 'error desconocido'}`
+}
 
 function DayRow({ entry, index, error, isToday, onChange, onCopyToAll }) {
     const day = DAYS[index]
@@ -132,6 +143,9 @@ export default function SettingsPanel() {
     const [saving, setSaving] = useState(false)
     const [toast, setToast] = useState(null)
     const [showErrors, setShowErrors] = useState(false)
+    const [loadError, setLoadError] = useState(null)
+    // true si el horario aún no está guardado en el formato día por día
+    const [needsFirstSave, setNeedsFirstSave] = useState(false)
 
     useEffect(() => {
         getSettings()
@@ -139,13 +153,18 @@ export default function SettingsPanel() {
                 const sch = normalizeSchedule(s)
                 setSchedule(sch)
                 setSaved(JSON.stringify(sch))
+                setNeedsFirstSave(!Array.isArray(s?.schedule))
             })
-            .catch((e) => console.error('Error cargando configuración:', e))
+            .catch((e) => {
+                console.error('Error cargando configuración:', e)
+                setLoadError(describeFirestoreError(e))
+                setNeedsFirstSave(true)
+            })
             .finally(() => setLoading(false))
     }, [])
 
     const errors = useMemo(() => validateSchedule(schedule), [schedule])
-    const dirty = saved !== null && JSON.stringify(schedule) !== saved
+    const dirty = needsFirstSave || (saved !== null && JSON.stringify(schedule) !== saved)
     const today = todayIndex()
 
     const notify = (message, type = 'success') => {
@@ -174,11 +193,14 @@ export default function SettingsPanel() {
             // Guardamos el nuevo formato y eliminamos el antiguo (`horarios`)
             await updateSettings({ schedule, horarios: deleteField() })
             setSaved(JSON.stringify(schedule))
+            setNeedsFirstSave(false)
+            setLoadError(null)
             setShowErrors(false)
             notify('Horario guardado')
         } catch (e) {
             console.error(e)
-            notify('No se pudo guardar. Intenta de nuevo.', 'error')
+            setLoadError(describeFirestoreError(e))
+            notify('No se pudo guardar el horario', 'error')
         } finally {
             setSaving(false)
         }
@@ -201,6 +223,18 @@ export default function SettingsPanel() {
                         title="Horario de atención"
                         subtitle="Se muestra en Contacto y Google lo usa para tu ficha local"
                     />
+
+                    {loadError && (
+                        <div role="alert" className="flex gap-2.5 rounded-xl p-3 mb-5 text-sm" style={{ background: '#FEF2F2', color: '#991B1B', border: '1px solid #FECACA' }}>
+                            <AlertTriangle size={18} className="flex-shrink-0 mt-0.5" />
+                            <p>{loadError}</p>
+                        </div>
+                    )}
+                    {!loadError && needsFirstSave && !loading && (
+                        <div className="rounded-xl p-3 mb-5 text-sm" style={{ background: 'rgba(0,113,188,0.06)', color: 'var(--color-brand-blue-dark)' }}>
+                            Revisa el horario y pulsa <strong>Guardar</strong> para publicarlo día por día en la web.
+                        </div>
+                    )}
 
                     {loading ? (
                         <div className="flex flex-col gap-3">
