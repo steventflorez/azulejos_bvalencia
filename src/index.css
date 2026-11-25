@@ -24,9 +24,11 @@
 }
 
 /* ── Base resets ─────────────────────────────────────── */
-*,
-*::before,
-*::after {
+/* El panel admin (.admin-root) queda fuera de este reset: sin capa (@layer)
+   anularía las utilidades de espaciado de Tailwind. Tailwind ya hace su propio reset. */
+:where(*:not(.admin-root, .admin-root *)),
+:where(*:not(.admin-root, .admin-root *))::before,
+:where(*:not(.admin-root, .admin-root *))::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -229,4 +231,42 @@ body::before {
 .reveal-up {
   opacity: 0;
   transform: translateY(40px);
+}
+/* ── Contenido de artículos del blog ─────────────────── */
+.post-content {
+  color: var(--color-text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+.post-content > * + * { margin-top: 1.25em; }
+.post-content h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  color: var(--color-text-main);
+  margin-top: 2em;
+}
+.post-content h3 {
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.35;
+  color: var(--color-text-main);
+  margin-top: 1.6em;
+}
+.post-content ul,
+.post-content ol { padding-left: 1.4em; }
+.post-content ul { list-style: disc; }
+.post-content ol { list-style: decimal; }
+.post-content li + li { margin-top: 0.4em; }
+.post-content li::marker { color: var(--color-brand-blue); }
+.post-content strong { color: var(--color-text-main); font-weight: 700; }
+.post-content a {
+  color: var(--color-brand-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (min-width: 768px) {
+  .post-content { font-size: 1.125rem; }
+  .post-content h2 { font-size: 1.9rem; }
 }
