@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Instagram, Facebook, Globe } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import Logo from './Logo'
 
 export default function Footer() {
@@ -180,6 +181,9 @@ export default function Footer() {
                         <a href="#" className="text-xs font-semibold transition-colors duration-300 hover:text-[#0071BC]" style={{ color: 'var(--color-text-light)', textDecoration: 'none' }}>
                             Cookies
                         </a>
+                        <Link to="/login" className="text-xs font-semibold transition-colors duration-300 hover:text-[#0071BC]" style={{ color: 'var(--color-text-light)', textDecoration: 'none' }}>
+                            Acceso Admin
+                        </Link>
                     </div>
                 </div>
             </div>

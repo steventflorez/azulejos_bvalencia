@@ -2,11 +2,16 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Phone, Mail, MapPin, Clock, ArrowUpRight } from 'lucide-react'
+import { useSettings } from '../hooks/useSettings'
+import { DAYS, formatShifts, todayIndex, isOpenNow } from '../utils/schedule'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Contact() {
     const sectionRef = useRef(null)
+    const { schedule } = useSettings()
+    const today = todayIndex()
+    const openNow = isOpenNow(schedule)
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -132,31 +137,52 @@ export default function Contact() {
                             >
                                 <Clock size={22} />
                             </div>
-                            <div className="flex-1">
-                                <h4
-                                    className="font-display font-bold text-lg mb-3"
-                                    style={{ color: 'var(--color-text-main)' }}
-                                >
-                                    Horarios
-                                </h4>
-                                <div className="flex flex-col gap-2">
-                                    <div className="flex justify-between gap-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                        <span className="font-semibold">Lunes — Jueves</span>
-                                        <span className="font-bold text-gray-800">10:00 — 19:00</span>
-                                    </div>
-                                    <div className="flex justify-between gap-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                        <span className="font-semibold">Viernes</span>
-                                        <span className="font-bold text-gray-800">10:00 — 15:00</span>
-                                    </div>
-                                    <div className="flex justify-between gap-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                        <span className="font-semibold">Sábado</span>
-                                        <span className="font-bold text-gray-800">10:00 — 13:00</span>
-                                    </div>
-                                    <div className="flex justify-between gap-8 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                                        <span className="font-semibold">Domingo</span>
-                                        <span className="font-bold" style={{ color: 'var(--color-text-light)' }}>Cerrado</span>
-                                    </div>
+                            <div className="flex-1 min-w-0">
+                                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                    <h4
+                                        className="font-display font-bold text-lg"
+                                        style={{ color: 'var(--color-text-main)' }}
+                                    >
+                                        Horarios
+                                    </h4>
+                                    <span
+                                        className="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full"
+                                        style={openNow
+                                            ? { background: 'rgba(38,194,129,0.12)', color: '#15803d' }
+                                            : { background: 'var(--color-bg-primary)', color: 'var(--color-text-light)' }}
+                                    >
+                                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: openNow ? '#16a34a' : 'var(--color-text-light)' }} />
+                                        {openNow ? 'Abierto ahora' : 'Cerrado ahora'}
+                                    </span>
                                 </div>
+                                <ul className="flex flex-col">
+                                    {schedule.map((entry, i) => {
+                                        const isToday = i === today
+                                        return (
+                                            <li
+                                                key={entry.day}
+                                                className="flex justify-between items-baseline gap-4 text-sm rounded-lg"
+                                                style={{
+                                                    padding: '4px 8px',
+                                                    margin: '0 -8px',
+                                                    color: 'var(--color-text-muted)',
+                                                    background: isToday ? 'rgba(0,113,188,0.06)' : 'transparent',
+                                                }}
+                                                aria-current={isToday ? 'date' : undefined}
+                                            >
+                                                <span className={isToday ? 'font-bold' : 'font-semibold'} style={isToday ? { color: 'var(--color-brand-blue)' } : undefined}>
+                                                    {DAYS[i].label}
+                                                </span>
+                                                <span
+                                                    className="font-bold text-right tabular-nums"
+                                                    style={{ color: entry.closed ? 'var(--color-text-light)' : 'var(--color-text-main)' }}
+                                                >
+                                                    {formatShifts(entry)}
+                                                </span>
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
                             </div>
                         </div>
 
